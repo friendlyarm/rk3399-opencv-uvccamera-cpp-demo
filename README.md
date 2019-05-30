@@ -1,5 +1,7 @@
 ## **opencv-uvccamera-cpp-demo**
 
+![image](https://github.com/friendlyarm/install-opencv-on-friendlycore/raw/rk3399/examples/images/cpp-opencamera.png)
+
 Build
 ------------
 ```
@@ -19,3 +21,7 @@ export DISPLAY=:0.0
 . setqt5env
 ./opencamera
 ```
+
+More examples
+------------
+https://github.com/friendlyarm/install-opencv-on-friendlycore
