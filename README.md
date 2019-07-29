@@ -22,6 +22,12 @@ export DISPLAY=:0.0
 ./opencamera
 ```
 
+Supported camera
+------------
+```
+Logitech C922
+```
+
 More examples
 ------------
 https://github.com/friendlyarm/install-opencv-on-friendlycore
