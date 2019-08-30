@@ -25,7 +25,7 @@ export DISPLAY=:0.0
 Supported camera
 ------------
 ```
-Logitech C922
+XCX-A22V130 (058f:3822)
 ```
 
 More examples
