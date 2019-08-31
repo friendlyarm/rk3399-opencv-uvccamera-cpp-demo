@@ -8,7 +8,7 @@ using namespace cv;
 
 int main() 
 { 
-	VideoCapture capture("v4l2src device=/dev/video8 io-mode=4 ! videoconvert ! video/x-raw,format=NV12,width=800,height=448,framerate=30/1 ! videoconvert ! appsink",cv::CAP_GSTREAMER);
+	VideoCapture capture("v4l2src device=/dev/video10 io-mode=4 ! videoconvert ! video/x-raw,format=NV12,width=800,height=448,framerate=30/1 ! videoconvert ! appsink",cv::CAP_GSTREAMER);
 	if (!capture.isOpened()) {
 		printf("Fail to open camera.\n");
 		return 1;
