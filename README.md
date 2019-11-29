@@ -30,4 +30,6 @@ Logitech C922
 
 More examples
 ------------
-https://github.com/friendlyarm/install-opencv-on-friendlycore
+https://github.com/friendlyarm/rk3399-opencv-ucvcamera-python-demo  
+https://github.com/friendlyarm/install-opencv-on-friendlycore  
+
