@@ -1,10 +1,10 @@
-## **opencv-uvccamera-cpp-demo**
+## **rk3399-opencv-uvccamera-cpp-demo**
 
 Build
 ------------
 ```
-git clone https://github.com/friendlyarm/opencv-uvccamera-cpp-demo.git
-cd opencv-uvccamera-cpp-demo
+git clone https://github.com/friendlyarm/rk3399-opencv-uvccamera-cpp-demo.git
+cd rk3399-opencv-uvccamera-cpp-demo
 mkdir build
 cd build
 cmake ..
@@ -69,4 +69,5 @@ More examples
 ------------
 https://github.com/friendlyarm/rk3399-opencv-ucvcamera-python-demo  
 https://github.com/friendlyarm/install-opencv-on-friendlycore  
+https://github.com/friendlyarm/s5pxx18-opencv-uvccamera-cpp-demo  
 
