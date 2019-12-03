@@ -1,5 +1,7 @@
 ## **rk3399-opencv-uvccamera-cpp-demo**
 
+![image](https://github.com/friendlyarm/rk3399-opencv-uvccamera-cpp-demo/raw/master/sample.png)
+
 Build
 ------------
 ```
