@@ -2,23 +2,29 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui.hpp>
 #include <cstdlib>
+#include <stdio.h>
+#include <time.h> 
+
 using namespace std;
 using namespace cv;
 
 // MJPEG
 char* get_camerasrc_mjpeg(int devIndex) {
-	// for T4, M4B
-	//    const int cam_width=800;
-	//    const int cam_height=600;
-
-	// for M4/M4v2/T4/M4B
+#if 1
+    // for T4, M4B
+    const int cam_width=1920;
+    const int cam_height=1080;
+    const int cam_frames=15;
+#else
+    // for M4/M4v2
     const int cam_width=432;
     const int cam_height=240;
-
     const int cam_frames=30;
+#endif
+
     static char str[255]={'\0'};
 	snprintf(str, sizeof(str)-1
-		, "v4l2src device=/dev/video%d io-mode=4 ! image/jpeg,width=%d,height=%d,framerate=%d/1 ! mppvideodec ! videoconvert ! video/x-raw ! appsink"
+		, "v4l2src device=/dev/video%d io-mode=4 ! image/jpeg,width=%d,height=%d,framerate=%d/1 ! jpegdec ! videoconvert ! video/x-raw,format=BGR ! appsink sync=false"
 		, devIndex
 		, cam_width
 		, cam_height
@@ -34,7 +40,7 @@ char* get_camerasrc_nv12(int devIndex) {
     const int cam_frames=30;
     static char str[255]={'\0'};
 	snprintf(str, sizeof(str)-1
-		, "v4l2src device=/dev/video%d io-mode=4 ! videoconvert ! video/x-raw,format=NV12,width=%d,height=%d,framerate=%d/1 ! videoconvert ! appsink"
+		, "v4l2src device=/dev/video%d io-mode=4 ! videoconvert ! video/x-raw,format=NV12,width=%d,height=%d,framerate=%d/1 ! videoconvert ! video/x-raw,format=BGR ! appsink"
 		, devIndex
 		, cam_width
 		, cam_height
@@ -87,7 +93,15 @@ int main(int argc,char* argv[])
 
 		devIndex += 2;  // dev: /dev/video12, /dev/video14, etc ..
 	}
-	
+
+	// fps counter begin
+	time_t start, end;
+	int fps_counter = 0;
+	double sec;
+	double fps;
+        time(&start);
+	// fps counter end
+
 	while (1) { 
 		Mat frame;
 		hasError = 0;
@@ -100,6 +114,21 @@ int main(int argc,char* argv[])
 			}
 			sprintf(windowName,"%d",i+1);
 			imshow(windowName,frame);
+
+			// only calc one camera
+			if (i == 0) {
+				// fps counter begin
+				time(&end);
+				fps_counter++;
+				sec = difftime(end, start);
+				if (sec > 1) {
+					fps = fps_counter/sec;
+					printf("%.2f fps\n", fps);
+					fps_counter=0;
+					time(&start);
+                                }
+				// fps counter end
+			}
 		}
 		if (hasError) {
 			break;
